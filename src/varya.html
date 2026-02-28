@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Варя - Наш сайт</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><rect x="45" width="10" height="100" fill="%237c7c7c"/><rect y="45" width="100" height="10" fill="%237c7c7c"/></svg>');
+        }
+
+        /* Шапка сайта с фото */
+        .header {
+            background-color: #7c7c7c;
+            height: 275px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Кнопки в шапке */
+        .nav-buttons {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            color: white;
+            background-color: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 12px 0;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 120px;
+            max-width: 200px;
+            border-radius: 6px;
+        }
+
+        .nav-button:hover {
+            background-color: white;
+            color: #7c7c7c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Фото в шапке */
+        .header-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-top: 20px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            transition: transform 0.5s;
+        }
+
+        .header-image:hover {
+            transform: rotate(10deg) scale(1.05);
+        }
+
+        /* Основной контент */
+        .main-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ffffff;
+            text-shadow: 0 0 10px #7c7c7cb3;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .page-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #7c7c7c;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* Стиль профиля как в dobb12.html */
+        .profile-container {
+            background: linear-gradient(145deg, #7c7c7c33, rgba(0,0,0,0.5));
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #7c7c7c;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #7c7c7c;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: transform 0.5s;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+        }
+
+        .profile-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #dddddd;
+        }
+
+        /* Стиль проектов как в dobb12.html */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, #7c7c7c33, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #7c7c7c;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #7c7c7c1a 0%, transparent 100%);
+            z-index: -1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-left: 4px solid #929292;
+        }
+
+        .project-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            height: 180px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4757;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin: 0 0 10px 0;
+            transition: color 0.3s;
+        }
+
+        .project-card:hover .project-title {
+            color: #929292;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .project-type {
+            color: #aaaaaa;
+            background: rgba(0,0,0,0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .project-year {
+            color: #ffd700;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #dddddd;
+        }
+
+        .details-button {
+            display: inline-block;
+            background: linear-gradient(to right, #7c7c7c, #929292);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px #7c7c7c4d;
+            border: none;
+            cursor: pointer;
+        }
+
+        .details-button:hover {
+            background: linear-gradient(to right, #929292, #9c9c9c);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px #7c7c7c66;
+        }
+
+        /* Кнопка "Назад" */
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 50px auto 0;
+            text-align: center;
+            background: linear-gradient(to right, #7c7c7c, #929292);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px #7c7c7c4d;
+        }
+        .back-button:hover {
+            background: linear-gradient(to right, #929292, #9c9c9c);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px #7c7c7c66;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                gap: 10px;
+            }
+            
+            .nav-button {
+                min-width: 100px;
+                font-size: 16px;
+                padding: 8px 0;
+            }
+            
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .projects-grid,
+            .artworks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с кнопками -->
+    <div class="header">
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='games.html'">Игры</button>
+            <button class="nav-button" onclick="window.location.href='music.html'">Музыка</button>
+            <button class="nav-button" onclick="window.location.href='piece.html'">Пьесы</button>
+            <button class="nav-button" onclick="window.location.href='members.html'">Участники</button>
+        </div>
+
+        <!-- Фото в шапке -->
+        <a href="C:\Users\Human\Desktop\Unite del Vortice\src\index.html">
+            <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\dobb12s-avatar.jpg" alt="Варя" class="header-image">
+        </a>
+    </div>
+
+    <!-- Основной контент страницы -->
+    <div class="main-content">
+        <h1 class="page-title">Варя</h1>
+        
+        <!-- Профиль -->
+        <div class="profile-container">
+            <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\varya-avatar.jpg" alt="Варя" class="profile-image">
+            <div class="profile-info">
+                <h2 class="profile-name">Варя</h2>
+                <p class="profile-description">
+                    Люблю Хеталию и Божественную тематику. Люблю читать интересные книги и смотреть аниме с уникальным сюжетом. 
+                    Также люблю смотреть и создавать милые и криповые вещи.
+                </p>
+            </div>
+        </div>
+        
+        <h2 class="page-title">Мои проекты</h2>
+        <div class="projects-grid">
+            <!-- Проект 1 -->
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\varya-project1.jpg" alt="Концепт-арты для 4 Найнтвита" class="project-image">
+                    <span class="project-badge">В порцессе</span>
+                </div>
+                <h3 class="project-title">Шатёр</h3>
+                <div class="project-meta">
+                    <span class="project-type">???</span>
+                    <span class="project-year">2025-...</span>
+                </div>
+                <p class="project-description">Психологическая история о шутах. Да,  именно о шутах. Шут он ведь не только шутит, но и говорит правду. 
+                    Однако никто не знает, какие чувства испытывает шут, если бы их не было так много. Надеюсь вам понравится такое:3</p>
+                <button class="details-button">Подробнее</button>
+            </div>
+            
+            <!-- Проект 2 -->
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\varya-project2.jpg" alt="Изгнанник Небес" class="project-image">
+                    <span class="project-badge">Активно</span>
+                </div>
+                <h3 class="project-title">Изгнанник Небес</h3>
+                <div class="project-meta">
+                    <span class="project-type">Актерская работа</span>
+                    <span class="project-year">2023-2024</span>
+                </div>
+                <p class="project-description">???.</p>
+                <button class="details-button">Подробнее</button>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-button">Вернуться на главную</a>
+    </div>
+
+    <script>
+        // Анимация элементов при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.profile-container, .project-card, .artwork-item');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        });
+
+        // Инициализация состояния элементов для анимации
+        const style = document.createElement('style');
+        style.textContent = `
+            .profile-container, .project-card, .artwork-item {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaKtYzEr_xD - Наш сайт</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><rect x="45" width="10" height="100" fill="%23007a03"/><rect y="45" width="100" height="10" fill="%23007a03"/></svg>');
+        }
+
+        /* Шапка сайта с фото */
+        .header {
+            background-color: #007a0a;
+            height: 275px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+            position: relative;    
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Кнопки в шапке */
+        .nav-buttons {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            color: white;
+            background-color: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 12px 0;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 120px;
+            max-width: 200px;
+            border-radius: 6px;
+        }
+
+        .nav-button:hover {
+            background-color: white;
+            color: #007a0a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Фото в шапке */
+        .header-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-top: 20px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            transition: transform 0.5s;
+        }
+
+        .header-image:hover {
+            transform: rotate(10deg) scale(1.05);
+        }
+
+        /* Основной контент */
+        .main-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ffffff;
+            text-shadow: 0 0 10px #007a0ab3;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .page-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #007a0a;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* Стиль профиля как в dobb12.html */
+        .profile-container {
+            background: linear-gradient(145deg, #007a0a33, rgba(0,0,0,0.5));
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #007a0a;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #007a0a;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: transform 0.5s;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+        }
+
+        .profile-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #dddddd;
+        }
+
+        /* Стиль проектов как в dobb12.html */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, #007a0a33, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #007a0a;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #007a0a1a 0%, transparent 100%);
+            z-index: -1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-left: 4px solid #00a50e;
+        }
+
+        .project-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            height: 180px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4757;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin: 0 0 10px 0;
+            transition: color 0.3s;
+        }
+
+        .project-card:hover .project-title {
+            color: #00a50e;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .project-type {
+            color: #aaaaaa;
+            background: rgba(0,0,0,0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .project-year {
+            color: #ffd700;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #dddddd;
+        }
+
+        .details-button {
+            display: inline-block;
+            background: linear-gradient(to right, #007a03, #00a50e);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px #007a0a4d;
+            border: none;
+            cursor: pointer;
+        }
+
+        .details-button:hover {
+            background: linear-gradient(to right, #007a03, #00ce00);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px #007a0a66;
+        }
+
+        /* Кнопка "Назад" */
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 50px auto 0;
+            text-align: center;
+            background: linear-gradient(to right, #007a0a, #00a50e);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px #007a0a4d;
+        }
+        .back-button:hover {
+            background: linear-gradient(to right, #00a50e, #00ce00);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px #007a0a66;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                gap: 10px;
+            }
+            
+            .nav-button {
+                min-width: 100px;
+                font-size: 16px;
+                padding: 8px 0;
+            }
+            
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .projects-grid,
+            .track-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с кнопками -->
+    <div class="header">
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='games.html'">Игры</button>
+            <button class="nav-button" onclick="window.location.href='music.html'">Музыка</button>
+            <button class="nav-button" onclick="window.location.href='piece.html'">Пьесы</button>
+            <button class="nav-button" onclick="window.location.href='members.html'">Участники</button>
+        </div>
+
+        <!-- Фото в шапке -->
+        <a href="C:\Users\Human\Desktop\Unite del Vortice\src\index.html">
+            <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\dobb12g-avatar.jpg" alt="Участники" class="header-image">
+         </a>
+    </div>
+
+    <!-- Основной контент страницы -->
+    <div class="main-content">
+        <h1 class="page-title">KaKtYzEr_xD</h1>
+        
+        <!-- Профиль -->
+        <div class="profile-container">
+            <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\kaktyzer-avatar.jpg" alt="KaKtYzEr_xD" class="profile-image">
+            <div class="profile-info">
+                <h2 class="profile-name">KaKtYzEr_xD</h2>
+                <p class="profile-description">
+                    Хей, я Kaktyzer. Люблю петь, однако проекты создаю впервые. 
+                    Чтож..."Адская Паутина" это временное название и его не я придумал. Его я придумал вдохновившись Меллграмом. 
+                    А так же потому, что я люблю что-то озвучивать. Надеюсь вам понравится то, что я пишу. 
+                    Сюжет пока в разработке, но можете пока почитать краткое описание :D
+                </p>
+            </div>
+        </div>
+        
+        <h2 class="page-title">Проекты</h2>
+        <div class="projects-grid">
+            <!-- Проект 1 -->
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\kaktyzer-project1.jpg" alt="Адская паутина" class="project-image">
+                    <span class="project-badge">Активно</span>
+                </div>
+                <h3 class="project-title">Адская паутина</h3>
+                <div class="project-meta">
+                    <span class="project-type">Аудиозаписи</span>
+                    <span class="project-year">2023-2024</span>
+                </div>
+                <p class="project-description">Аудиозаписи с допросов.</p>
+                <a href="C:\Users\Human\Desktop\Unite del Vortice\src\">
+                    <button class="details-button">Подробнее</button>
+                </a>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">Вернуться на главную</a>
+    </div>
+
+    <script>
+        // Анимация элементов при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.profile-container, .project-card, .track-item');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        });
+
+        // Инициализация состояния элементов для анимации
+        const style = document.createElement('style');
+        style.textContent = `
+            .profile-container, .project-card, .track-item {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

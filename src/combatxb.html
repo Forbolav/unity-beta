@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combat xB Series - Наш сайт</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><rect x="45" width="10" height="100" fill="%2312007a"/><rect y="45" width="100" height="10" fill="%2312007a"/></svg>');
+        }
+
+        /* Шапка сайта с фото */
+        .header {
+            background-color: #12007a;
+            height: 275px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Кнопки в шапке */
+        .nav-buttons {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            color: white;
+            background-color: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 12px 0;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 120px;
+            max-width: 200px;
+            border-radius: 6px;
+        }
+
+        .nav-button:hover {
+            background-color: white;
+            color: #12007a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Фото в шапке */
+        .header-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-top: 20px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            transition: transform 0.5s;
+        }
+
+        .header-image:hover {
+            transform: rotate(10deg) scale(1.05);
+        }
+
+        /* Основной контент */
+        .main-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(18, 0, 122, 0.7);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .page-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #12007a;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* Стиль профиля проекта */
+        .project-container {
+            background: linear-gradient(145deg, rgba(18,0,122,0.2), rgba(0,0,0,0.5));
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #12007a;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .project-cover {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid #12007a;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: transform 0.5s;
+        }
+
+        .project-cover:hover {
+            transform: scale(1.03);
+        }
+
+        .project-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .project-name {
+            font-size: 2rem;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+        }
+
+        .project-tagline {
+            font-size: 1.3rem;
+            color: #aaaaaa;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #dddddd;
+            margin-bottom: 20px;
+        }
+
+        /* Детали проекта */
+        .project-details {
+            background: linear-gradient(145deg, rgba(18,0,122,0.2), rgba(0,0,0,0.5));
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #12007a;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            margin-bottom: 15px;
+        }
+
+        .detail-title {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-title::before {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #12007a;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .detail-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #dddddd;
+            padding-left: 20px;
+        }
+
+        /* Серия игр */
+        .series-games {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .game-card {
+            background: linear-gradient(145deg, rgba(18,0,122,0.2), rgba(0,0,0,0.5));
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #12007a;
+            transition: all 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .game-title {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .game-status {
+            display: inline-block;
+            padding: 3px 10px;
+            background: #ff4757;
+            color: white;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .game-description {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #cccccc;
+        }
+
+        .game-description-1 {
+            font-size: 0.9rem;
+            font-family: "Wingdings", sans-serif;
+            line-height: 1.5;
+            color: #cccccc;
+        }
+
+        .profile-card {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid #12007a;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: transform 0.5s;
+        }
+
+        /* Кнопка "Назад" */
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 50px auto 0;
+            text-align: center;
+            background: linear-gradient(to right, #12007a, #1a00a3);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(18, 0, 122, 0.3);
+        }
+
+        .back-button:hover {
+            background: linear-gradient(to right, #1a00a3, #2400d0);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(18, 0, 122, 0.4);
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                gap: 10px;
+            }
+            
+            .nav-button {
+                min-width: 100px;
+                font-size: 16px;
+                padding: 8px 0;
+            }
+            
+            .project-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .project-cover {
+                width: 100%;
+                height: auto;
+                max-height: 400px;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .series-games {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с кнопками -->
+    <div class="header">
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='games.html'">Игры</button>
+            <button class="nav-button" onclick="window.location.href='music.html'">Музыка</button>
+            <button class="nav-button" onclick="window.location.href='piece.html'">Пьесы</button>
+            <button class="nav-button" onclick="window.location.href='members.html'">Участники</button>
+        </div>
+
+        <!-- Фото в шапке -->
+        <a href="C:\Users\Human\Desktop\Unite del Vortice\src\index.html">
+            <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\dobb12-avatar.jpg" alt="Участники" class="header-image">
+         </a>
+    </div>
+
+    <!-- Основной контент страницы -->
+    <div class="main-content">
+        <h1 class="page-title">Combat xB Series</h1>
+        
+        <!-- Профиль проекта -->
+        <div class="project-container">
+            <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\combatxb.jpg" alt="Combat xB Series" class="project-cover">
+            <div class="project-info">
+                <h2 class="project-name">Combat xB Series</h2>
+                <p class="project-tagline">"Когда свет и тьма сталкиваются, рождается вихрь"</p>
+                <p class="project-description">
+                    Серия файтинг-игр, созданная по мотивам "4 Найнтвитов", но с другой сюжетной линией. 
+                    Каждая часть серии представляет собой самостоятельную историю, связанную общими 
+                    персонажами. Главную причину противостояния вам предстоит узнать.
+                </p>
+                <button class="back-button" onclick="window.location.href='dobb12.html'">К проектам Dobb12</button>
+            </div>
+        </div>
+        
+        <!-- Детали проекта -->
+        <div class="project-details">
+            <div class="detail-item">
+                <h3 class="detail-title">Автор</h3>
+                <p class="detail-content">Dobb12 и Forbolav</p>
+            </div>
+            
+            <div class="detail-item">
+                <h3 class="detail-title">Жанр</h3>
+                <p class="detail-content">Файтинг</p>
+            </div>
+            
+            <div class="detail-item">
+                <h3 class="detail-title">Движок</h3>
+                <p class="detail-content">???</p>
+            </div>
+            
+            <div class="detail-item">
+                <h3 class="detail-title">График</h3>
+                <p class="detail-content">
+                    Combat 6B - вышел (2022)<br>
+                    Combat 7B: Тени прошлого - вышел (2023)<br>
+                    Combat 8B: Разбой демонов - вышел (9 февраля 2025)<br>
+                    Combat 9B: ??? - в разработке (2025)
+                </p>
+            </div>
+        </div>
+        
+        <!-- Игры серии -->
+        <h2 class="page-title">Игры серии</h2>
+        <div class="series-games">
+            <div class="game-card">
+                <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\combat6b.jpg" alt="Combat xB Series" class="profile-card">
+                <h3 class="game-title">Combat 6B</h3>
+                <span class="game-status">В разработке</span>
+                <p class="game-description">
+                    Combat 6B - первая игра серии файтингов Combat xB series. Новичок уже год в рядах компашки класса, настало время его проверить. 
+                    Но глава класса, с ним что-то не так. Что именно? Вам и предстоит узнать.
+                </p>
+            </div>
+
+            <div class="game-card">
+                <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\combat7b.jpg" alt="Combat xB Series" class="profile-card">
+                <h3 class="game-title">Combat 7B: Божественный хаос</h3>
+                <span class="game-status">В разработке</span>
+                <p class="game-description">
+                    Combat 7B - вторая часть серии с новым персонажем - Викторией. Восстановите порядок на землях хаоса. Остановите божественную игру.
+                </p>
+            </div>
+
+            <div class="game-card">
+                <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\combat8b.jpg" alt="Combat xB Series" class="profile-card">
+                <h3 class="game-title">Combat 8B: Разбой демонов</h3>
+                <span class="game-status">Вышла</span>
+                <p class="game-description">
+                    Combat 8B - третья часть серии и сборник аудиозаписей которые рассказывают о Лоре. 
+                    Iоаннъ президент школы хочет повторить турнир, который был два года назад, но страдает от того, что происходит с ним. 
+                    Помогите ему и прекратите разбой демонов
+                </p>
+            </div>
+   
+            <div class="game-card">
+                <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\combat9b.jpg" alt="Combat xB Series" class="profile-card">
+                <h3 class="game-title">Combat 9B: ???</h3>
+                <span class="game-status">Запланирована</span>
+                <p class="game-description-1">
+                    This is secret, waiting.
+                </p>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-button">Вернуться на главную</a>
+    </div>
+
+    <script>
+        // Анимация элементов при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.project-container, .project-details, .game-card');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        });
+
+        // Инициализация состояния элементов для анимации
+        const style = document.createElement('style');
+        style.textContent = `
+            .project-container, .project-details, .game-card {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

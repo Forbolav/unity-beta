@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Участники - Наш сайт</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><rect x="45" width="10" height="100" fill="%2312007a"/><rect y="45" width="100" height="10" fill="%2312007a"/></svg>');
+        }
+
+        /* Шапка сайта с фото */
+        .header {
+            background-color: #12007a;
+            height: 275px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Кнопки в шапке */
+        .nav-buttons {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            color: white;
+            background-color: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 12px 0;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 120px;
+            max-width: 200px;
+            border-radius: 6px;
+        }
+
+        .nav-button:hover {
+            background-color: white;
+            color: #12007a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Фото в шапке */
+        .header-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-top: 20px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            transition: transform 0.5s;
+        }
+
+        .header-image:hover {
+            transform: rotate(10deg) scale(1.05);
+        }
+
+        /* Основной контент */
+        .members-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(18, 0, 122, 0.7);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .page-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #12007a;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .member-card1 {
+            background: linear-gradient(145deg, #12007a33, #00000080);
+            padding: 25px;
+            border-left: 4px solid #12007a;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card2 {
+            background: linear-gradient(145deg, #5e008a33, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #5e008a;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card3 {
+            background: linear-gradient(145deg, #00910c33, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #00910c;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card4 {
+            background: linear-gradient(145deg, #bd783833, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #bd7838;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card5 {
+            background: linear-gradient(145deg, #ffffff33, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #ffffff;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card6 {
+            background: linear-gradient(145deg, #ff72ec33, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #ff72ec;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card7 {
+            background: linear-gradient(145deg, #00507533, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #005075;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card8 {
+            background: linear-gradient(145deg, #8f459933, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #8f4599;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card9 {
+            background: linear-gradient(145deg, #00ff6a33, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #00ff6a;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card10 {
+            background: linear-gradient(145deg, #85858533, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #858585;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card11 {
+            background: linear-gradient(145deg, #8a430033, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #8a4300;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card12 {
+            background: linear-gradient(145deg, #ffd90033, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #ffd900;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card13 {
+            background: linear-gradient(145deg, #80a5c433, rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #80a5c4;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(18,0,122,0.1) 0%, transparent 100%);
+            z-index: -1;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-left: 4px solid #1a00a3;
+        }
+        .member-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            height: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .member-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .member-card:hover .member-image {
+            transform: scale(1.05);
+        }
+
+        .member-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4757;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin: 0 0 10px 0;
+            transition: color 0.3s;
+        }
+
+        .member-card:hover .member-name {
+            color: #1a00a3;
+        }
+
+        .member-role {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .member-genre {
+            color: #aaaaaa;
+            background: rgba(0,0,0,0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .member-rating {
+            color: #ffd700;
+        }
+
+        .member-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #dddddd;
+        }
+
+        /* Кнопка "Назад" */
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 50px auto 0;
+            text-align: center;
+            background: linear-gradient(to right, #12007a, #1a00a3);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(18, 0, 122, 0.3);
+        }
+
+        .back-button:hover {
+            background: linear-gradient(to right, #1a00a3, #2400d0);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(18, 0, 122, 0.4);
+        }
+
+        /* Основной контейнер */
+        .main-container {
+            position: relative;
+            min-height: calc(100vh - 200px);
+            padding-bottom: 100px;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                gap: 10px;
+            }
+            
+            .nav-button {
+                min-width: 100px;
+                font-size: 16px;
+                padding: 8px 0;
+            }
+            
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .members-content {
+                padding: 20px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с кнопками -->
+    <div class="header">
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='games.html'">Игры</button>
+            <button class="nav-button" onclick="window.location.href='music.html'">Музыка</button>
+            <button class="nav-button" onclick="window.location.href='piece.html'">Пьесы</button>
+            <button class="nav-button" onclick="window.location.href='members.html'">Участники</button>
+        </div>
+
+        <!-- Фото в шапке -->
+         <a href="C:\Users\Human\Desktop\Unite del Vortice\src\index.html">
+            <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\dobb12-avatar.jpg" alt="Участники" class="header-image">
+         </a>
+    </div>
+
+    <!-- Основной контейнер -->
+     <div class="main-container">
+        <div class="members-content">
+            <h1 class="page-title">Наши участники</h1>
+            
+            <div class="members-grid">
+                <!-- Карточка участника 1 -->
+                <div class="member-card1">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\dobb12-avatar.jpg" alt="Dobb12" class="member-image">
+                        <span class="member-badge">Основатель</span>
+                    </div>
+                    <h2 class="member-name">Dobb12</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Разработчик, Джорно Джованно</span>
+                    </div>
+                    <p class="member-description">Бывший разработчик, писатель, драматург, недохудожник, начинающий музыкант и глава Unity Vortex.</p>
+                </div>
+                
+                <!-- Карточка участника 2 -->
+                <div class="member-card2">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\forbolav-avatar.jpg" alt="Forbolav" class="member-image">
+                        <span class="member-badge">Разработчик</span>
+                    </div>
+                    <h2 class="member-name">Forbolav</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Джотаро Куджо</span>
+                    </div>
+                    <p class="member-description">Разработчик данного сайта, гитарист, соавтор "Combar xB series" и правая рука Dobb12.</p>
+                </div>
+                
+                <!-- Карточка участника 3 -->
+                <div class="member-card3">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\kaktyzer-avatar.jpg" alt="KaKtYzEr" class="member-image">
+                        <span class="member-badge">Актёр</span>
+                    </div>
+                    <h2 class="member-name">KaKtYzEr</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Джозеф Джостар</span>
+                    </div>
+                    <p class="member-description">Вокал у этого парня ПРОСТО БОЖЕСТВЕННЫЙ. Без шуток. У него неплохо выходит вокалить. Также по актёрству он очень правдоподобный. Хоть и порой переигрывает. Также он автор своего проекта с дрпроссами. Мы не знаем его названия, но он уже над ним работает. Надеемся на то, что у него всё получится.</p>
+                </div>
+
+                <!-- Карточка участника 4 -->
+                <div class="member-card4">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\frolov-avatar.jpg" alt="Frolov" class="member-image">
+                        <span class="member-badge">Актёр</span>
+                    </div>
+                    <h2 class="member-name">Frolov Kirill</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Джонатан Джостар</span>
+                    </div>
+                    <p class="member-description">Мемный чувак. Постоянно в каких-то передрягах и постоянно что-то ломает. Как себя так и вещи. Но в студии он актер дубляжа и надеемся, что он сможет озвучить подходящую для него роль.</p>
+                </div>
+
+                <!-- Карточка участника 5 -->
+                <div class="member-card5">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\milkis-avatar.jpg" alt="Milkis" class="member-image">
+                        <span class="member-badge">Актриса</span>
+                    </div>
+                    <h2 class="member-name">Milkis</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Джолин Куджо</span>
+                    </div>
+                    <p class="member-description">Порой грубая, но милая. Её можно побесить. Если обидела - извинится. Играет на гитаре, электрогитаре, калимбе, балалайка и синтерзатор.</p>
+                </div>
+                
+                <!-- Карточка участника 6 -->
+                <div class="member-card6">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\ioann-avatar.jpg" alt="Pure Ioann" class="member-image">
+                        <span class="member-badge">Спонсор</span>
+                    </div>
+                    <h2 class="member-name">Чистовъ Iоаннъ Лучезарный</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Кира Ёшикаги</span>
+                    </div>
+                    <p class="member-description">Помогает нам с проектами. Делает мемы. Порой спонсирует. Однако, дорогие участники вам нужно уважать его. Или кто знает, что у него в голове. ВЕРНЕЕ КТО В ЕГО ГОЛОВЕ АХАХАХАХАХАХАХА<br>ХАХАХААХАХАХАХАХАХААХ. Кхм...Кхм...шучу. Вообщем хороший человек. Уважайте..</p>
+                </div>
+
+                <!-- Карточка участника 7 -->
+                <div class="member-card7">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\foxgames-avatar.jpg" alt="Fox Games" class="member-image">
+                        <span class="member-badge">Художник</span>
+                    </div>
+                    <h2 class="member-name">Fox Games</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Дио Брандо</span>
+                    </div>
+                    <p class="member-description">Рисует спрайты Dobb12. Также может подправить в сюжете проекта. Рассудительный, мемный, порой душнит. Но рисует отлично. Возможно у него свои проекты есть, но мы никогда не узнаем, что у него на уме. Но его проекты не будут принадлежать Unity Vortex, как он сам говорил.</p>
+                </div>
+
+                <!-- Карточка участника 8 -->
+                <div class="member-card8">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\sqwrlx-avatar.jpg" alt="Sqwrlx" class="member-image">
+                        <span class="member-badge">Переводчик</span>
+                    </div>
+                    <h2 class="member-name">Sqwrlx</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Лиза Лиза</span>
+                    </div>
+                    <p class="member-description">Переводит некоторые интересующие нас темы. Своих проектов нет. Но был персонаж, которого нужно прописать. Надеемся на то, что она справится с ним.</p>
+                </div>
+
+                <!-- Карточка участника 9 -->
+                <div class="member-card9">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\ogr-avatar.jpg" alt="Ogr" class="member-image">
+                        <span class="member-badge">Актриса</span>
+                    </div>
+                    <h2 class="member-name">Огр</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Эрмес Костелло</span>
+                    </div>
+                    <p class="member-description">Более среднего актёрства мало, что умеет. Красноречивая. Немного дурочка. Своих проектов нет.</p>
+                </div>
+                <!-- Карточка участника 10 -->
+                <div class="member-card10">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\varya-avatar.jpg" alt="Варя" class="member-image">
+                        <span class="member-badge">Художница</span>
+                    </div>
+                    <h2 class="member-name">Варя</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Эрина Пендлтон</span>
+                    </div>
+                    <p class="member-description">Неплохо рисует. Любит Хеталию. С ней легко наладить контакт и приятная в общении. Если нужно помочь то она может тем, чем сможет. Имеет два сырых, но проекта.</p>
+                </div>
+                
+                <!-- Карточка участника 11 -->
+                <div class="member-card11">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\mizent-avatar.jpg" alt="Mr. Mizent" class="member-image">
+                        <span class="member-badge">Мемодел</span>
+                    </div>
+                    <h2 class="member-name">Mr. Mizent</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Какёин Нориаки</span>
+                    </div>
+                    <p class="member-description">Раньше клепал мемы, а сейчас развивает свой проект с временным названием Stimpankos. У него неплохой взгляд на него. А сам он мемный чувак, может понять шутку и быть её частью. За мемы шарит. У него неплохой голос.</p>
+                </div>
+
+                <!-- Карточка участника 12 -->
+                <div class="member-card12">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\nadia-avatar.jpg" alt="TLTeshka" class="member-image">
+                        <span class="member-badge">Детер</span>
+                    </div>
+                    <h2 class="member-name">Госпожа Деменция</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Триш Ун</span>
+                    </div>
+                    <p class="member-description">Скромная, социофоб. Озвучивает истинную форму Детер.</p>
+                </div>
+
+                <!-- Карточка участника 13 -->
+                <div class="member-card13">
+                    <div class="member-image-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\polik-avatar.jpg" alt="TLTeshka" class="member-image">
+                        <span class="member-badge">Детер</span>
+                    </div>
+                    <h2 class="member-name">Полик</h2>
+                    <div class="member-role">
+                        <span class="member-genre">Роберт Э. О. Спидвагон</span>
+                    </div>
+                    <p class="member-description">Данных пока нет.</p>
+                </div>
+            </div>
+            
+            <a href="index.html" class="back-button">Вернуться на главную</a>
+        </div>
+    </div>
+
+    <script>
+        // Анимация карточек при загрузке
+         document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.member-card1, .member-card2, .member-card3, .member-card4, .member-card5, .member-card6, .member-card7, .member-card8, .member-card9, .member-card10, .member-card11, .member-card12, .member-card13');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        });
+
+
+        // Инициализация состояния карточек для анимации
+        const style = document.createElement('style');
+        style.textContent = `
+            .member-card1, .member-card2, .member-card3, .member-card4, .member-card5, .member-card6, .member-card7, .member-card8, .member-card9, .member-card10, .member-card11, .member-card12, .member-card13 { 
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            
+        ` ;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

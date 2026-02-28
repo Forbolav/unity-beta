@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музыка - Наш сайт</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><rect x="45" width="10" height="100" fill="%2312007a"/><rect y="45" width="100" height="10" fill="%2312007a"/></svg>');
+        }
+
+        /* Шапка сайта с фото */
+        .header {
+            background-color: #12007a;
+            height: 275px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Кнопки в шапке */
+        .nav-buttons {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            color: white;
+            background-color: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 12px 0;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 120px;
+            max-width: 200px;
+            border-radius: 6px;
+        }
+
+        .nav-button:hover {
+            background-color: white;
+            color: #12007a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Фото в шапке */
+        .header-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-top: 20px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            transition: transform 0.5s;
+        }
+
+        .header-image:hover {
+            transform: rotate(10deg) scale(1.05);
+        }
+
+        /* Основной контент */
+        .music-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(18, 0, 122, 0.7);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .page-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #12007a;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .album-card {
+            background: linear-gradient(145deg, rgba(18,0,122,0.2), rgba(0,0,0,0.5));
+            padding: 25px;
+            border-left: 4px solid #12007a;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .album-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(18,0,122,0.1) 0%, transparent 100%);
+            z-index: -1;
+        }
+
+        .album-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-left: 4px solid #1a00a3;
+        }
+
+        .album-cover-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .album-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .album-card:hover .album-cover {
+            transform: scale(1.05);
+        }
+
+        .album-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4757;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .album-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin: 0 0 10px 0;
+            transition: color 0.3s;
+        }
+
+        .album-card:hover .album-title {
+            color: #1a00a3;
+        }
+
+        .album-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .album-artist {
+            color: #aaaaaa;
+            background: rgba(0,0,0,0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .album-year {
+            color: #ffd700;
+        }
+
+        .album-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #dddddd;
+        }
+
+        .listen-button {
+            display: inline-block;
+            background: linear-gradient(to right, #12007a, #1a00a3);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(18, 0, 122, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .listen-button:hover {
+            background: linear-gradient(to right, #1a00a3, #2400d0);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(18, 0, 122, 0.4);
+        }
+
+        /* Кнопка "Назад" */
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 50px auto 0;
+            text-align: center;
+            background: linear-gradient(to right, #12007a, #1a00a3);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(18, 0, 122, 0.3);
+        }
+
+        .back-button:hover {
+            background: linear-gradient(to right, #1a00a3, #2400d0);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(18, 0, 122, 0.4);
+        }
+
+        /* Основной контейнер */
+        .main-container {
+            position: relative;
+            min-height: calc(100vh - 200px);
+            padding-bottom: 100px;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                gap: 10px;
+            }
+            
+            .nav-button {
+                min-width: 100px;
+                font-size: 16px;
+                padding: 8px 0;
+            }
+            
+            .album-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .music-content {
+                padding: 20px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с кнопками -->
+    <div class="header">
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='games.html'">Игры</button>
+            <button class="nav-button" onclick="window.location.href='music.html'">Музыка</button>
+            <button class="nav-button" onclick="window.location.href='piece.html'">Пьесы</button>
+            <button class="nav-button" onclick="window.location.href='members.html'">Участники</button>
+        </div>
+
+        <!-- Фото в шапке -->
+        <a href="C:\Users\Human\Desktop\Unite del Vortice\src\index.html">
+            <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\dobb12-avatar.jpg" alt="Участники" class="header-image">
+         </a>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="main-container">
+        <div class="music-content">
+            <h1 class="page-title">Наша музыка</h1>
+            
+            <div class="album-grid">
+                <!-- Альбом 1 -->
+                <div class="album-card">
+                    <div class="album-cover-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\album1.jpg" alt="Вихрь Души" class="album-cover">
+                        <span class="album-badge">Новый</span>
+                    </div>
+                    <h2 class="album-title">Вихрь Души</h2>
+                    <div class="album-meta">
+                        <span class="album-artist">Dobb12 & Mr. Mizent</span>
+                        <span class="album-year">2024-2025</span>
+                    </div>
+                    <p class="album-description">Будет будет будет будет.</p>
+                    <button class="listen-button">Слушать</button>
+                </div>
+                
+                <!-- Альбом 2 -->
+                <div class="album-card">
+                    <div class="album-cover-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\album2.jpg" alt="Combat 8B OST" class="album-cover">
+                        <span class="album-badge">OST</span>
+                    </div>
+                    <h2 class="album-title">Combat 8B OST</h2>
+                    <div class="album-meta">
+                        <span class="album-artist">Mr. Mizent</span>
+                        <span class="album-year">2024</span>
+                    </div>
+                    <p class="album-description">Официальный саундтрек к игре "Combat 8B: Разбой демонов".</p>
+                    <button class="listen-button">Слушать</button>
+                </div>
+                
+                <!-- Альбом 3 -->
+                <div class="album-card">
+                    <div class="album-cover-container">
+                        <img src="C:\Users\Human\Desktop\Unite del Vortice\src\assets\ninetweet.jpg" alt="4 Найнтвита" class="album-cover">
+                        <span class="album-badge">Саундтрек</span>
+                    </div>
+                    <h2 class="album-title">4 Найнтвита</h2>
+                    <div class="album-meta">
+                        <span class="album-artist">Unity Vortex</span>
+                        <span class="album-year">2022</span>
+                    </div>
+                    <p class="album-description">Музыкальные темы из анимационного сериала "4 Найнтвита".</p>
+                    <button class="listen-button">Слушать</button>
+                </div>
+            </div>
+            
+            <a href="index.html" class="back-button">Вернуться на главную</a>
+        </div>
+    </div>
+
+    <script>
+        // Анимация карточек при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.album-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        });
+
+        // Инициализация состояния карточек для анимации
+        const style = document.createElement('style');
+        style.textContent = `
+            .album-card {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
